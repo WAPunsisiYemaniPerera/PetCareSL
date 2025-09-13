@@ -1,0 +1,13 @@
+fastapi
+uvicorn[standard]
+langchain
+langchain-openai
+langchain-community
+chromadb
+pypdf
+tavily-python
+pydantic>=2
+sentence-transformers
+langchain-huggingface
+langchain-tavily
+python-dotenv
