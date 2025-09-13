@@ -1,6 +1,14 @@
 const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
+const dotenv = require('dotenv');
+const connectDB= require('./config/db')
+
+//loading .env
+dotenv.config();
+
+//Connect to the db
+connectDB();
 
 const app = express();
 app.use(cors());
@@ -28,6 +36,8 @@ app.post('/chat', async (req,res)=>{
         });
     }
 });
+
+app.use('/api/services', require('./routes/serviceRoutes'));
 
 const PORT = 5000;
 app.listen(PORT, ()=>{
