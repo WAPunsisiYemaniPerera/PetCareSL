@@ -20,9 +20,10 @@ const serviceSchema = new mongoose.Schema({
         required : true
     },
     //for future map
-    //     type: { type: String, enum: ['Point'], default: 'Point' },
-    //     coordinates: { type: [Number], index: '2dsphere' } 
-    //}
+    location: {
+         type: { type: String, enum: ['Point'], default: 'Point' },
+         coordinates: { type: [Number], index: '2dsphere' } 
+    }
 }, {
     timestamps: true //automatically add the created at and updated at fields
 });
