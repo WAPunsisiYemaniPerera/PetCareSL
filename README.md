@@ -80,7 +80,7 @@ To get a local copy up and running, follow these simple steps.
 
 1.  **Clone the repository:**
     ```sh
-    git clone [YOUR_GITHUB_REPO_URL]
+    git clone https://github.com/WAPunsisiYemaniPerera/PetCareSL.git
     cd PetCareSL
     ```
 
