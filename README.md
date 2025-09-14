@@ -19,8 +19,6 @@ This is a complete MERN stack application featuring a sophisticated RAG (Retriev
 
 ## 📸 Application Preview
 
-*(**ඉතා වැදගත්:** මෙතනට ඔබේ app එකේ screenshots හෝ screen recording එකකින් හදපු GIF එකක් දාන්න. Giphy Capture හෝ ScreenToGif වැනි නොමිලේ දෙන software එකක් පාවිච්චි කරන්න පුළුවන්. මේකෙන් ඔබේ README එක ගොඩක් ආකර්ෂණීය වෙනවා.)*
-
 ![PetCareSL Chat Interface](https://via.placeholder.com/800x450.png?text=GIF+of+Chatbot+Conversation)
 *A preview of the chatbot in action.*
 
