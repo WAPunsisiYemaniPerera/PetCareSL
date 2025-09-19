@@ -21,7 +21,7 @@ app.use(express.json());
 
 // Express Session Middleware
 app.use(session({
-    secret: 'your session secret', 
+    secret: process.env.SESSION_SECRET, 
     resave: false,
     saveUninitialized: false,
 }));
