@@ -34,6 +34,7 @@ app.use(passport.session());
 app.use('/chat', require('./routes/chatRoute')); 
 app.use('/api/services', require('./routes/serviceRoutes'));
 app.use('/api/users', require('./routes/userRoutes'));
+app.use('/api/pets', require('./routes/petRoutes'));
 app.use('/auth', require('./routes/authRoutes')); 
 
 

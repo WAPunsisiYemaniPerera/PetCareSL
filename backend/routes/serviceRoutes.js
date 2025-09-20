@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const Service = require('../models/Service');
-const mongoose = require('mongoose'); // Mongoose මෙතනට import කරගැනීම
+const mongoose = require('mongoose'); 
 
-// GET /api/services (සම්පූර්ණ ලැයිස්තුව ලබාගැනීම)
+// GET /api/services 
 router.get('/', async (req, res) => {
     try {
         const services = await Service.find({});
@@ -48,9 +48,10 @@ router.post('/:id/reviews', async (req, res) => {
             // create new review object
             // till we create user accounts, we get the name as 'Sample User'
             const review = {
-                name: 'Sample User',
+                name: req.user.name,
                 rating: Number(rating),
                 comment,
+                user: req.user._id,
             };
 
             // adding new review to the existing review list of the service
