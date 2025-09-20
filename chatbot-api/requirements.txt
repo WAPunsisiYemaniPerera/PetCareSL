@@ -11,3 +11,5 @@ sentence-transformers
 langchain-huggingface
 langchain-tavily
 python-dotenv
+beautifulsoup4
+lxml

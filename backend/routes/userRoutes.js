@@ -62,7 +62,7 @@ router.post('/login', async (req,res)=>{
                     _id: user._id,
                     name: user.name,
                     email: user.email,
-                    token: generateToken(user._id, user.name)
+                    oken: generateToken(user._id, user.name, user.isAdmin),
                 });
             } else {
                 res.status(401).json({ 
@@ -95,7 +95,7 @@ router.post('/admin/login', async (req,res)=>{
                 name: user.name,
                 email: user.email,
                 isAdmin: user.isAdmin,
-                token: generateToken(user._id, user.name),
+                token: generateToken(user._id, user.name, user.isAdmin),
             });
         }else{
             res.status(401).json({

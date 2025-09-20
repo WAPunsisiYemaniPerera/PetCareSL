@@ -6,6 +6,9 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const session = require('express-session');
 const connectDB = require('./config/db');
+const { protect } = require('./middleware/authMiddleware');
+const { admin } = require('./middleware/adminMiddleware');
+
 
 dotenv.config();
 require('./config/passport')(passport);
@@ -36,6 +39,7 @@ app.use('/api/services', require('./routes/serviceRoutes'));
 app.use('/api/users', require('./routes/userRoutes'));
 app.use('/api/pets', require('./routes/petRoutes'));
 app.use('/auth', require('./routes/authRoutes')); 
+app.use('/api/admin', protect, admin, require('./routes/adminRoutes'))
 
 
 const PORT = process.env.PORT || 5000;
