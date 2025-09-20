@@ -18,6 +18,11 @@ const userSchema = new mongoose.Schema({
     // save the unique id who login with google
     googleId:{
         type: String,
+    },
+    isAdmin:{
+        type: Boolean,
+        required: true,
+        default:false
     }
 }, {
     timestamps: true,

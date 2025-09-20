@@ -79,4 +79,35 @@ router.post('/login', async (req,res)=>{
     }
 }) 
 
+//for admin login
+router.post('/admin/login', async (req,res)=>{
+    const {email, password} = req.body;
+
+    try{
+        const user = await User.findOne({email});
+
+        //check if the user is there, is password correct and isadmin=true
+        if(user && user.isAdmin && (await bcrypt.compare(password, user.password))){
+            
+            //if all are correct the give a token to the admin
+            res.json({
+                _id: user._id,
+                name: user.name,
+                email: user.email,
+                isAdmin: user.isAdmin,
+                token: generateToken(user._id, user.name),
+            });
+        }else{
+            res.status(401).json({
+                messsage: 'Invalid Credentials'
+            })
+        }
+        
+    } catch(error){
+        res.status(500).json({
+            message: 'Server Error'
+        })
+    }
+})
+
 module.exports = router;
