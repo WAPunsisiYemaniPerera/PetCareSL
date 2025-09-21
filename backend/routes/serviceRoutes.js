@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Service = require('../models/Service');
 const mongoose = require('mongoose'); 
+const { protect } = require('../middleware/authMiddleware');
 
 // GET /api/services 
 router.get('/', async (req, res) => {
@@ -36,8 +37,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // adding reviews
-router.post('/:id/reviews', async (req, res) => {
-    // taking the ratings and comments from the frontend
+router.post('/:id/reviews', protect, async (req, res) => {
     const { rating, comment } = req.body;
     const serviceId = req.params.id;
 
@@ -45,8 +45,6 @@ router.post('/:id/reviews', async (req, res) => {
         const service = await Service.findById(serviceId);
 
         if (service) {
-            // create new review object
-            // till we create user accounts, we get the name as 'Sample User'
             const review = {
                 name: req.user.name,
                 rating: Number(rating),
@@ -54,26 +52,16 @@ router.post('/:id/reviews', async (req, res) => {
                 user: req.user._id,
             };
 
-            // adding new review to the existing review list of the service
             service.reviews.push(review);
-
-            // save the changes in the database
             await service.save();
-
-            res.status(201).json({
-                message: 'Review added successfully',
-            });
+            res.status(201).json({ message: 'Review added successfully' });
 
         } else {
-            res.status(404).json({
-                message: 'Service not found',
-            });
+            res.status(404).json({ message: 'Service not found' });
         }
     } catch (error) {
-        console.error(error);
-        res.status(500).json({
-            message: 'Server Error',
-        });
+        console.error(error); 
+        res.status(500).json({ message: 'Server Error' });
     }
 });
 

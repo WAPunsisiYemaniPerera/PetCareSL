@@ -45,39 +45,31 @@ router.post('/register', async (req,res)=>{
 });
 
 //login with email and password
-router.post('/login', async (req,res)=>{
-    const {email, password} = req.body;
+router.post('/login', async (req, res) => {
+    const { email, password } = req.body;
 
     try {
-        //find the user from the email
-        const user = await User.findOne({email});
+        const user = await User.findOne({ email });
 
-        if(user){
-            //check whether the hashed password in the db and the user entered password is ==
-            const isMatch = await bcrypt.compare(password, user.password);
+        //check if the user is there and if the password is correct
+        if (user && (await bcrypt.compare(password, user.password))) {
+            
+            
+            res.json({
+                _id: user._id,
+                name: user.name,
+                email: user.email,
+                isAdmin: user.isAdmin,
+                token: generateToken(user._id, user.name, user.isAdmin),
+            });
 
-            if(isMatch){
-                //if password is correct, then create a token for user
-                res.json({
-                    _id: user._id,
-                    name: user.name,
-                    email: user.email,
-                    oken: generateToken(user._id, user.name, user.isAdmin),
-                });
-            } else {
-                res.status(401).json({ 
-                    message: 'Invalid email or password' 
-                });
-            }
         } else {
-            res.status(401).json({
-                message: 'Invalid email or password'
-            })
+            res.status(401).json({ message: 'Invalid email or password' });
         }
-    } catch (error){
+    } catch (error) {
         res.status(500).json({ message: 'Server Error' });
     }
-}) 
+});
 
 //for admin login
 router.post('/admin/login', async (req,res)=>{

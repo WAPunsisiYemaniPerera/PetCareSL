@@ -39,7 +39,7 @@ app.use('/api/services', require('./routes/serviceRoutes'));
 app.use('/api/users', require('./routes/userRoutes'));
 app.use('/api/pets', require('./routes/petRoutes'));
 app.use('/auth', require('./routes/authRoutes')); 
-app.use('/api/admin', protect, admin, require('./routes/adminRoutes'))
+app.use('/api/admin', protect, admin, require('./routes/adminRoutes'));
 
 
 const PORT = process.env.PORT || 5000;
