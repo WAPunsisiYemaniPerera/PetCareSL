@@ -38,6 +38,7 @@ app.use('/chat', require('./routes/chatRoute'));
 app.use('/api/services', require('./routes/serviceRoutes'));
 app.use('/api/users', require('./routes/userRoutes'));
 app.use('/api/pets', require('./routes/petRoutes'));
+app.use('/api/products', require('./routes/productRoutes'));
 app.use('/auth', require('./routes/authRoutes')); 
 app.use('/api/admin', protect, admin, require('./routes/adminRoutes'));
 
