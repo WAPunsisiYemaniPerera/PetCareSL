@@ -6,8 +6,8 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const session = require('express-session');
 const connectDB = require('./config/db');
-const { protect } = require('./middleware/authMiddleware');
-const { admin } = require('./middleware/adminMiddleware');
+const { protect, admin } = require('./middleware/authMiddleware');
+
 
 
 dotenv.config();
