@@ -31,4 +31,14 @@ router.post('/', protect, async (req, res) => {
     }
 });
 
+//for adopted pets
+router.get('/adoption', async (req, res) => {
+    try{
+        const adoptionPets = await Pet.find({ status: 'For Adoption' });
+        res.json(adoptionPets);
+    } catch (error) {
+        res.status(500).json({ message: 'Server Error' });
+    }
+})
+
 module.exports = router;
