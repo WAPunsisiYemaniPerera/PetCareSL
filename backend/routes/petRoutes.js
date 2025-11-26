@@ -14,6 +14,23 @@ router.get('/adoption', async (req, res) => {
     }
 })
 
+router.get('/adoption/:id', async(req,res)=>{
+    try{
+        const pet = await Pet.findById(req.params.id);
+        if(pet && pet.status === 'For Adoption'){
+            res.json(pet);
+        } else{
+            res.status(404).json({
+                message: 'Pet not found or not for adoption'
+            });
+        }
+    }catch (error){
+        res.status(500).json({
+            message: 'Server Error'
+        });
+    }
+})
+
 router.get('/mypets', protect, async (req, res) => {
     try {
         const pets = await Pet.find({ user: req.user._id });
