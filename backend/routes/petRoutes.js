@@ -3,6 +3,17 @@ const router = express.Router();
 const Pet = require('../models/Pet');
 const { protect } = require('../middleware/authMiddleware');
 
+//for adopted pets
+router.get('/adoption', async (req, res) => {
+    try{
+        const adoptionPets = await Pet.find({ status: 'For Adoption' });
+        res.json(adoptionPets);
+    } catch (error) {
+        console.error('Error fetching adoption pets:', error);
+        res.status(500).json({ message: 'Server Error' });
+    }
+})
+
 router.get('/mypets', protect, async (req, res) => {
     try {
         const pets = await Pet.find({ user: req.user._id });
@@ -31,14 +42,6 @@ router.post('/', protect, async (req, res) => {
     }
 });
 
-//for adopted pets
-router.get('/adoption', async (req, res) => {
-    try{
-        const adoptionPets = await Pet.find({ status: 'For Adoption' });
-        res.json(adoptionPets);
-    } catch (error) {
-        res.status(500).json({ message: 'Server Error' });
-    }
-})
+
 
 module.exports = router;

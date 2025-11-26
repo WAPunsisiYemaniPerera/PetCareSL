@@ -24,6 +24,15 @@ const petSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    story: { type: String },
+    shelterInfo: { type: String },
+    image: { type: String, default: '/images/sample.jpg' },
+    contact: { type: String, required: true },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'User'
+    },
     //for add an image
     // image: {
     //     type: String,
