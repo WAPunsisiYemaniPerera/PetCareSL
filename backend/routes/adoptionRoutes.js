@@ -40,4 +40,28 @@ router.get('/', protect, admin, async (req, res) => {
     }
 });
 
+//changing the status
+router.put('/:id', protect, admin, async(req,res)=>{
+    const { status } = req.body;
+
+    try{
+        const request = await AdoptionRequest.findById(req.params.id);
+
+        if(request){
+            request.status = status; //update the status
+            const updatedRequest = await request.save();
+                res.json(updatedRequest);
+            
+        } else{
+            res.status(404).json({
+                message: 'Request not found'
+            });
+        }
+    } catch (error){
+        res.status(500).json({
+            message:'Server Error'
+        })
+    }
+})
+
 module.exports = router;
