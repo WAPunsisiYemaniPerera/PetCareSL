@@ -50,7 +50,19 @@ router.put('/:id', protect, admin, async(req,res)=>{
         if(request){
             request.status = status; //update the status
             const updatedRequest = await request.save();
-                res.json(updatedRequest);
+            
+            //if approved, change the status of the pet
+            if (status === 'Approved'){
+                const Pet = require('../models/Pet'); //call the pet model
+                const pet = await Pet.findById(request.pet);
+
+                if(pet){
+                    pet.status = 'Adopted';
+                    await pet.save();
+                }
+            }
+
+            res.json(updatedRequest);
             
         } else{
             res.status(404).json({
@@ -60,6 +72,22 @@ router.put('/:id', protect, admin, async(req,res)=>{
     } catch (error){
         res.status(500).json({
             message:'Server Error'
+        })
+    }
+})
+
+//get the details of logged persons
+router.get('/my-requests', protect, async(req,res)=>{
+    try{
+        const requests = await AdoptionRequest.find({
+            user: req.user._id
+        })
+            .populate('pet', 'name image');
+        res.jason(requests);
+
+    } catch (error){
+        res.status(500).json({
+            message: 'Server Error'
         })
     }
 })
