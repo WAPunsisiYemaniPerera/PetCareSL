@@ -1,13 +1,28 @@
 const express = require('express');
 const router = express.Router();
 const AdoptionRequest = require('../models/AdoptionRequest');
+const Pet = require('../models/Pet'); // Pet model එක අවශ්‍යයි status update කරන්න
 const { protect, admin } = require('../middleware/authMiddleware');
 
+// --- 1. My Requests Route ---
+// GET /api/adoption/my-requests
+router.get('/my-requests', protect, async (req, res) => {
+    try {
+        // get the id from logged user
+        const requests = await AdoptionRequest.find({ user: req.user._id })
+            .populate('pet', 'name image'); 
+        
+        res.json(requests);
+    } catch (error) {
+        console.error("Error fetching my requests:", error);
+        res.status(500).json({ message: 'Server Error' });
+    }
+});
 
+// --- 2. Create Request Route ---
+// POST /api/adoption
 router.post('/', protect, async (req, res) => {
-    console.log("📝 New Adoption Request incoming..."); // Log 1
     const { petId, contactNumber, message } = req.body;
-
     try {
         const request = new AdoptionRequest({
             user: req.user._id,
@@ -16,80 +31,55 @@ router.post('/', protect, async (req, res) => {
             message
         });
         const createdRequest = await request.save();
-        console.log("✅ Request Saved Successfully!"); // Log 2
         res.status(201).json(createdRequest);
     } catch (error) {
-        console.error("❌ Error saving adoption request:", error); // Error Log
-        res.status(500).json({ message: 'Server Error', error: error.message });
+        console.error("Error creating request:", error);
+        res.status(500).json({ message: 'Server Error' });
     }
 });
 
-
+// --- 3. Admin Get All Route ---
+// GET /api/adoption (Admin Only)
 router.get('/', protect, admin, async (req, res) => {
-    console.log("👀 Admin checking requests..."); // Log 3
     try {
         const requests = await AdoptionRequest.find({})
             .populate('user', 'name email')
             .populate('pet', 'name image');
-        
-        console.log(`✅ Found ${requests.length} requests`); // Log 4
         res.json(requests);
     } catch (error) {
-        console.error("❌ Error fetching requests:", error); // Error Log
-        res.status(500).json({ message: 'Server Error', error: error.message });
+        res.status(500).json({ message: 'Server Error' });
     }
 });
 
-//changing the status
-router.put('/:id', protect, admin, async(req,res)=>{
+// --- 4. Update Status Route ---
+// PUT /api/adoption/:id (Admin Only)
+router.put('/:id', protect, admin, async (req, res) => {
     const { status } = req.body;
 
-    try{
+    try {
         const request = await AdoptionRequest.findById(req.params.id);
 
-        if(request){
-            request.status = status; //update the status
-            const updatedRequest = await request.save();
-            
-            //if approved, change the status of the pet
-            if (status === 'Approved'){
-                const Pet = require('../models/Pet'); //call the pet model
-                const pet = await Pet.findById(request.pet);
+        if (request) {
+            request.status = status;
+            await request.save();
 
-                if(pet){
+            
+            if (status === 'Approved') {
+                const pet = await Pet.findById(request.pet);
+                if (pet) {
                     pet.status = 'Adopted';
                     await pet.save();
                 }
             }
 
-            res.json(updatedRequest);
-            
-        } else{
-            res.status(404).json({
-                message: 'Request not found'
-            });
+            res.json(request);
+        } else {
+            res.status(404).json({ message: 'Request not found' });
         }
-    } catch (error){
-        res.status(500).json({
-            message:'Server Error'
-        })
+    } catch (error) {
+        console.error("Error updating status:", error);
+        res.status(500).json({ message: 'Server Error' });
     }
-})
-
-//get the details of logged persons
-router.get('/my-requests', protect, async(req,res)=>{
-    try{
-        const requests = await AdoptionRequest.find({
-            user: req.user._id
-        })
-            .populate('pet', 'name image');
-        res.jason(requests);
-
-    } catch (error){
-        res.status(500).json({
-            message: 'Server Error'
-        })
-    }
-})
+});
 
 module.exports = router;
