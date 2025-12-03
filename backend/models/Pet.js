@@ -23,11 +23,10 @@ const petSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    // --- අලුතින් එකතු කළ Status Field එක ---
     status: {
         type: String,
         required: true,
-        enum: ['Owned', 'For Adoption'],
+        enum: ['For Adoption', 'Pending', 'Adopted', 'Owned'],
         default: 'Owned'
     },
     story: { type: String },
