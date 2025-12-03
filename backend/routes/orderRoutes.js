@@ -3,7 +3,7 @@ const router = express.Router();
 const Order = require('../models/Order');
 const { protect, admin } = require('../middleware/authMiddleware');
 
-// 1. Create New Order (User)
+// Create New Order (User)
 router.post('/', protect, async (req, res) => {
     try {
         const { orderItems, shippingAddress, totalPrice } = req.body;
@@ -23,7 +23,7 @@ router.post('/', protect, async (req, res) => {
     }
 });
 
-// 2. Get All Orders (Admin Only)
+// Get All Orders (Admin Only)
 router.get('/', protect, admin, async (req, res) => {
     try {
         const orders = await Order.find({}).populate('user', 'id name');
@@ -33,7 +33,7 @@ router.get('/', protect, admin, async (req, res) => {
     }
 });
 
-// 3. Mark Order as Delivered (Admin Only)
+// Mark Order as Delivered (Admin Only)
 router.put('/:id/deliver', protect, admin, async (req, res) => {
     try {
         const order = await Order.findById(req.params.id);
@@ -50,7 +50,7 @@ router.put('/:id/deliver', protect, admin, async (req, res) => {
     }
 });
 
-// 4. Get Order by ID (MUST BE LAST) - අනිවාර්යයෙන්ම මේක අන්තිමට තියෙන්න ඕන
+// 4. Get Order by ID
 router.get('/:id', protect, async (req, res) => {
     try {
         const order = await Order.findById(req.params.id).populate('user', 'name email');

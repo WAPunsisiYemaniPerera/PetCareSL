@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const AdoptionRequest = require('../models/AdoptionRequest');
-const Pet = require('../models/Pet'); // Pet model එක අවශ්‍යයි status update කරන්න
+const Pet = require('../models/Pet'); 
 const { protect, admin } = require('../middleware/authMiddleware');
 
-// --- 1. My Requests Route ---
+
 // GET /api/adoption/my-requests
 router.get('/my-requests', protect, async (req, res) => {
     try {
@@ -19,7 +19,7 @@ router.get('/my-requests', protect, async (req, res) => {
     }
 });
 
-// --- 2. Create Request Route ---
+
 // POST /api/adoption
 router.post('/', protect, async (req, res) => {
     const { petId, contactNumber, message } = req.body;
@@ -38,7 +38,7 @@ router.post('/', protect, async (req, res) => {
     }
 });
 
-// --- 3. Admin Get All Route ---
+
 // GET /api/adoption (Admin Only)
 router.get('/', protect, admin, async (req, res) => {
     try {
@@ -51,7 +51,7 @@ router.get('/', protect, admin, async (req, res) => {
     }
 });
 
-// --- 4. Update Status Route ---
+
 // PUT /api/adoption/:id (Admin Only)
 router.put('/:id', protect, admin, async (req, res) => {
     const { status } = req.body;

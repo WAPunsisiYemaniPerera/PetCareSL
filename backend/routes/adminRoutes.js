@@ -4,9 +4,6 @@ const User = require('../models/User');
 const Pet = require('../models/Pet');
 const { protect, admin } = require('../middleware/authMiddleware'); // Middleware import is needed
 
-// NOTE: All routes in this file are now correctly protected.
-// They will first check if the user is logged in (protect),
-// and then check if they are an admin (admin).
 
 // GET /api/admin/stats
 router.get('/stats', protect, admin, async (req, res) => {
