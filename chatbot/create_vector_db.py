@@ -23,7 +23,7 @@ def create_vector_db():
     print("Reading PDF file...")
 
     #load the text file
-    pdf_path = "chatbot\pet_care_data.pdf"
+    pdf_path = "chatbot/pet_care_data.pdf"
     try:
         loader = PyPDFLoader(pdf_path)
         documents = loader.load()

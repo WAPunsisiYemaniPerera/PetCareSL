@@ -8,7 +8,7 @@ from langchain_community.vectorstores import FAISS
 # Web Search Tool (DuckDuckGo)
 from langchain_community.tools import DuckDuckGoSearchRun
 # Prompt Templates
-from langchain.prompts import PromptTemplate
+from langchain_core.prompts import PromptTemplate
 
 # Load API keys
 load_dotenv()
