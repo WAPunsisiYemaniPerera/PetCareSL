@@ -1,6 +1,6 @@
 # 🐾 PetCareSL - The Ultimate AI-Powered Pet Care Hub for Sri Lanka
 
-![PetCareSL Banner](https://via.placeholder.com/1200x400.png?text=PetCareSL+App+Banner)
+![PetCareSL Banner](./images/home.png)
 
 **PetCareSL** is a comprehensive, full-stack web platform designed to digitize the pet care experience in Sri Lanka. It combines modern e-commerce, adoption services, and AI-powered assistance into a single, user-friendly ecosystem.
 
