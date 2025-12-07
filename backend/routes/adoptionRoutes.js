@@ -67,7 +67,8 @@ router.put('/:id', protect, admin, async (req, res) => {
             if (status === 'Approved') {
                 const pet = await Pet.findById(request.pet);
                 if (pet) {
-                    pet.status = 'Adopted';
+                    pet.status = 'Owned'; 
+                    pet.user = request.user; 
                     await pet.save();
                 }
             }
