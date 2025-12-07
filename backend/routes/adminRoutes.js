@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 const Pet = require('../models/Pet');
+const Order = require('../models/Order');
 const { protect, admin } = require('../middleware/authMiddleware'); // Middleware import is needed
 
 
@@ -11,10 +12,18 @@ router.get('/stats', protect, admin, async (req, res) => {
         const userCount = await User.countDocuments({});
         const petCount = await Pet.countDocuments({});
         const adoptionCount = await Pet.countDocuments({ status: 'For Adoption' });
-        const ownedCount = await Pet.countDocuments({ status: 'Owned' });
+        
+        const orderCount = await Order.countDocuments({});
 
-        res.json({ users: userCount, pets: petCount, forAdoption: adoptionCount, ownedPets: ownedCount });
+        res.json({ 
+            users: userCount, 
+            pets: petCount, 
+            forAdoption: adoptionCount, 
+            orders: orderCount 
+        });
+        
     } catch (error) {
+        console.error(error); 
         res.status(500).json({ message: "Server Error" });
     }
 });
