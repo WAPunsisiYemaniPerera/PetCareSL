@@ -151,3 +151,11 @@ npm start
 | Services | Adoption |
 |:---:|:---:|
 | ![Services](./images/services.png) | ![Adoption](./images/adoption.png) |
+
+| Admin Dashboard | Admin Product Inventory |
+|:---:|:---:|
+| ![Dashboard](./images/dashboard.png) | ![Product Inventory](./images/productinventory.png) |
+
+| Admin User Management | Admin Service Management |
+|:---:|:---:|
+| ![User Management](./images/users.png) | ![Service Management](./images/servicedirectory.png) |
