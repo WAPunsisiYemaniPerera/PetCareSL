@@ -144,3 +144,10 @@ npm start
 ```
 
 ### 📸 Screenshots
+| Home | Marketplace |
+|:---:|:---:|
+| ![Dashboard](./images/home.png) | ![Marketplace](./images/products.png) |
+
+| Services | Adoption |
+|:---:|:---:|
+| ![Services](./images/services.png) | ![Adoption](./images/adoption.png) |
