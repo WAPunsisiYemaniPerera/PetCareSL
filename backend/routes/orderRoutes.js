@@ -1,25 +1,37 @@
 const express = require('express');
 const router = express.Router();
 const Order = require('../models/Order');
+const Product = require('../models/Product');
 const { protect, admin } = require('../middleware/authMiddleware');
 
 // Create New Order (User)
 router.post('/', protect, async (req, res) => {
-    try {
-        const { orderItems, shippingAddress, totalPrice } = req.body;
-        if (orderItems && orderItems.length === 0) {
-            return res.status(400).json({ message: 'No order items' });
+    const { orderItems, shippingAddress, totalPrice } = req.body;
+
+    if (orderItems && orderItems.length === 0) {
+        return res.status(400).json({ message: 'No order items' });
+    } else {
+        try {
+            const order = new Order({
+                orderItems,
+                user: req.user._id,
+                shippingAddress,
+                totalPrice
+            });
+
+            for (const item of orderItems) {
+                const product = await Product.findById(item.product);
+                if (product) {
+                    product.countInStock = product.countInStock - item.qty; // Stock අඩු කරනවා
+                    await product.save(); 
+                }
+            }
+
+            const createdOrder = await order.save();
+            res.status(201).json(createdOrder);
+        } catch (error) {
+            res.status(500).json({ message: 'Order creation failed' });
         }
-        const order = new Order({
-            user: req.user._id,
-            orderItems,
-            shippingAddress,
-            totalPrice
-        });
-        const createdOrder = await order.save();
-        res.status(201).json(createdOrder);
-    } catch (error) {
-        res.status(500).json({ message: 'Server Error' });
     }
 });
 
