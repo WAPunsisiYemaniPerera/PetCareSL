@@ -11,9 +11,12 @@ Whether you are looking to adopt a new friend, buy supplies, find a vet, or get 
 ## ✨ Key Features
 
 ### 🧠 1. AI-Powered Smart Assistant (The Brain)
-* **RAG Chatbot:** Built with **LangChain**, utilizing **Google Gemini 2.0 Flash** for reasoning and **Cohere** for embeddings.
-* **Knowledge Base:** Uses a local PDF knowledge base processed into a **FAISS** vector store for accurate, context-aware answers.
-* **Context Aware:** Remembers conversation history for a natural dialogue flow.
+* **Reasoning Engine:** Built with **LangChain**, utilizing **Google Gemini 2.5 Flash** for high-speed reasoning and **natural language generation**.
+* **Hybrid Knowledge Retrieval:**
+    * **Local Knowledge:** Uses a PDF-based knowledge base processed into a FAISS vector store with HuggingFace Embeddings for verified, document-specific answers.
+    * **Live Web Search:** Integrated with DuckDuckGo Search to fetch real-time information if the answer is not found in the PDF.
+* **Context Aware:** Maintains conversation history to ensure a natural, human-like dialogue flow.
+
 
 ### 🛍️ 2. E-Commerce Marketplace
 * **Product Catalog:** Browse a wide range of pet foods, toys, and accessories.
