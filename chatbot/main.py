@@ -20,9 +20,10 @@ async def ask_question(request: QueryRequest):
         if qa_chain is None:
             raise HTTPException(status_code=500, detail="Model setup failed.")
             
+        # run agent
         response = qa_chain.invoke({"input": request.message})
         
-        return {"reply": response["answer"]}
+        return {"reply": response["output"]}
     
     except Exception as e:
         print(f"❌ Error: {e}")
