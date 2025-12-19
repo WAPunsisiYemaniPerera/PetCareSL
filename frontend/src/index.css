@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
+
+:root {
+  --primary-brown: #A0522D; /* Sienna */
+  --primary-brown-dark: #8B4513; /* SaddleBrown */
+  --accent-green: #6B8E23; /* OliveDrab */
+  --background-light: #F0F2F5; /* A standard light gray */
+  --surface-color: #FFFFFF; /* සුදු */
+  --text-primary: #3C3F36; /* Dark Olive Green/Gray */
+  --text-secondary: #6B7280; /* Medium Gray */
+  --border-color: #E5E7EB;
+  --success-color: #28a745;
+  --danger-color: #dc3545;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif; 
+  background-color: var(--background-color);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
