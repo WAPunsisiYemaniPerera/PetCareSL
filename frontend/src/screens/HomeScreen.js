@@ -7,7 +7,7 @@ const HomeScreen = () => {
         <div className="min-h-screen bg-[#FFFBF7]">
             
             {/* 1. HERO SECTION */}
-            <div className="relative pt-32 pb-10 px-6 overflow-hidden">
+            <div className="relative pt-10 pb-10 px-6 overflow-hidden">
                 {/* Background Decor */}
                 <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-orange-200/40 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/4 animate-pulse-slow"></div>
                 <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-green-200/40 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4 animate-pulse-slow delay-700"></div>
