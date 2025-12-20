@@ -22,7 +22,7 @@ const AdminUserListScreen = () => {
             setLoading(true);
             const token = localStorage.getItem('petCareToken');
             const config = { headers: { Authorization: `Bearer ${token}` } };
-            const { data } = await axios.get('http://localhost:5000/api/admin/users', config);
+            const { data } = await axios.get('https://yemani-petcare-backend.hf.space/api/admin/users', config);
             setUsers(data);
             setLoading(false);
         } catch (err) {
@@ -44,7 +44,7 @@ const AdminUserListScreen = () => {
             try {
                 const token = localStorage.getItem('petCareToken');
                 const config = { headers: { Authorization: `Bearer ${token}` } };
-                await axios.delete(`http://localhost:5000/api/admin/users/${id}`, config);
+                await axios.delete(`https://yemani-petcare-backend.hf.space/api/admin/users/${id}`, config);
                 fetchUsers();
             } catch (err) {
                 setError('Failed to delete user.');

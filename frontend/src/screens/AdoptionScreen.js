@@ -10,7 +10,7 @@ const AdoptionScreen = () => {
     useEffect(() => {
         const fetchAdoptionPets = async () => {
             try {
-                const { data } = await axios.get('http://localhost:5000/api/pets/adoption');
+                const { data } = await axios.get('https://yemani-petcare-backend.hf.space/api/pets/adoption');
                 setPets(data);
                 setLoading(false);
             } catch (error) {

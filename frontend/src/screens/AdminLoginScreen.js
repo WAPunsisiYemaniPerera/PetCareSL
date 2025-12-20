@@ -22,12 +22,12 @@ const AdminLoginScreen = () => {
         e.preventDefault();
         setError('');
         try {
-            const { data } = await axios.post('http://localhost:5000/api/users/admin/login', { email, password });
+            const { data } = await axios.post('https://yemani-petcare-backend.hf.space/api/users/admin/login', { email, password });
             login(data.token);
             
             toast.success('Welcome Back, Admin! 🛡️', {
                 theme: "colored",
-                style: { backgroundColor: '#3C3F36', color: '#fff' }, // කළු/දුඹුරු පාට theme එක
+                style: { backgroundColor: '#3C3F36', color: '#fff' }, 
                 autoClose: 2000
             });
 

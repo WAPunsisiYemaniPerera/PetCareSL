@@ -18,7 +18,7 @@ const MyAdoptionRequestsScreen = () => {
                 try {
                     const token = localStorage.getItem('petCareToken');
                     const config = { headers: { Authorization: `Bearer ${token}` } };
-                    const { data } = await axios.get('http://localhost:5000/api/adoption/my-requests', config);
+                    const { data } = await axios.get('https://yemani-petcare-backend.hf.space/api/adoption/my-requests', config);
                     setRequests(data);
                     setLoading(false);
                 } catch (error) {

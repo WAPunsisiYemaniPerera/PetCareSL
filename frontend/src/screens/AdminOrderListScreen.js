@@ -19,7 +19,7 @@ const AdminOrderListScreen = () => {
                 try {
                     const token = localStorage.getItem('petCareToken');
                     const config = { headers: { Authorization: `Bearer ${token}` } };
-                    const { data } = await axios.get('http://localhost:5000/api/orders', config);
+                    const { data } = await axios.get('https://yemani-petcare-backend.hf.space/api/orders', config);
                     setOrders(data);
                     setLoading(false);
                 } catch (error) {

@@ -24,10 +24,9 @@ const LoginScreen = () => {
                 return;
             }
             try {
-                await axios.post('http://localhost:5000/api/users/register', { name, email, password });
+                await axios.post('https://yemani-petcare-backend.hf.space/api/users/register', { name, email, password });
                 
-                // Register වුණාම කෙලින්ම Login වෙනවා
-                const loginData = await axios.post('http://localhost:5000/api/users/login', { email, password });
+                const loginData = await axios.post('https://yemani-petcare-backend.hf.space/api/users/login', { email, password });
                 login(loginData.data.token);
                 navigate('/');
             } catch (err) {
@@ -35,7 +34,7 @@ const LoginScreen = () => {
             }
         } else {
             try {
-                const { data } = await axios.post('http://localhost:5000/api/users/login', { email, password });
+                const { data } = await axios.post('https://yemani-petcare-backend.hf.space/api/users/login', { email, password });
                 login(data.token);
                 navigate('/');
             } catch (err) {
@@ -45,7 +44,7 @@ const LoginScreen = () => {
     };
 
     const googleLoginHandler = () => {
-        window.location.href = 'http://localhost:5000/auth/google';
+        window.location.href = 'https://yemani-petcare-backend.hf.space/auth/google';
     };
 
     return (

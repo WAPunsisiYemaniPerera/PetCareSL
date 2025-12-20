@@ -18,7 +18,7 @@ const AdminProductListScreen = () => {
     const fetchProducts = async () => {
         try {
             setLoading(true);
-            const { data } = await axios.get('http://localhost:5000/api/products');
+            const { data } = await axios.get('https://yemani-petcare-backend.hf.space/api/products');
             setProducts(data);
             setLoading(false);
         } catch (err) {
@@ -41,7 +41,7 @@ const AdminProductListScreen = () => {
             try {
                 const token = localStorage.getItem('petCareToken');
                 const config = { headers: { Authorization: `Bearer ${token}` } };
-                await axios.delete(`http://localhost:5000/api/products/${id}`, config);
+                await axios.delete(`https://yemani-petcare-backend.hf.space/api/products/${id}`, config);
                 
                 
                 toast.success('Product Deleted Successfully! 🗑️', { 
@@ -61,7 +61,7 @@ const AdminProductListScreen = () => {
         try {
             const token = localStorage.getItem('petCareToken');
             const config = { headers: { Authorization: `Bearer ${token}` } };
-            const {data} = await axios.post('http://localhost:5000/api/products', {}, config);
+            const {data} = await axios.post('https://yemani-petcare-backend.hf.space/api/products', {}, config);
             
             toast.info("Creating new product... 📦", { theme: "colored" });
             navigate(`/admin/product/${data._id}/edit`);

@@ -21,7 +21,7 @@ const AdminPetListScreen = () => {
             setLoading(true);
             const token = localStorage.getItem('petCareToken');
             const config = { headers: { Authorization: `Bearer ${token}` } };
-            const { data } = await axios.get('http://localhost:5000/api/admin/pets', config);
+            const { data } = await axios.get('https://yemani-petcare-backend.hf.space/api/admin/pets', config);
             setPets(data);
             setLoading(false);
         } catch (err) {
@@ -44,7 +44,7 @@ const AdminPetListScreen = () => {
             try {
                 const token = localStorage.getItem('petCareToken');
                 const config = { headers: { Authorization: `Bearer ${token}` } };
-                await axios.delete(`http://localhost:5000/api/admin/pets/${id}`, config);
+                await axios.delete(`https://yemani-petcare-backend.hf.space/api/admin/pets/${id}`, config);
                 
                 toast.success("Pet record deleted! 🗑️", { 
                     theme: "colored",
@@ -62,7 +62,7 @@ const AdminPetListScreen = () => {
         try {
             const token = localStorage.getItem('petCareToken');
             const config = { headers: { Authorization: `Bearer ${token}` } };
-            const { data } = await axios.post('http://localhost:5000/api/admin/pets', {}, config);
+            const { data } = await axios.post('https://yemani-petcare-backend.hf.space/api/admin/pets', {}, config);
             
             toast.info("Creating new pet profile... 🐾", { theme: "colored" });
             navigate(`/admin/pet/${data._id}/edit`);

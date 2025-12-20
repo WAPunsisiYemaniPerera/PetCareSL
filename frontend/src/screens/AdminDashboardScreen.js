@@ -38,7 +38,7 @@ const AdminDashboardScreen = () => {
             try {
                 const token = localStorage.getItem('petCareToken');
                 const config = { headers: { Authorization: `Bearer ${token}` } };
-                const { data } = await axios.get('http://localhost:5000/api/admin/stats', config);
+                const { data } = await axios.get('https://yemani-petcare-backend.hf.space/api/admin/stats', config);
                 
                 setStats(data || { users: 0, pets: 0, forAdoption: 0, orders: 0 });
                 setLoading(false);

@@ -21,7 +21,7 @@ const AdoptionDetailScreen = () => {
     useEffect(() => {
         const fetchPetDetails = async () => {
             try {
-                const { data } = await axios.get(`http://localhost:5000/api/pets/adoption/${id}`);
+                const { data } = await axios.get(`https://yemani-petcare-backend.hf.space/api/pets/adoption/${id}`);
                 setPet(data);
                 setLoading(false);
             } catch (err) {
@@ -46,7 +46,7 @@ const AdoptionDetailScreen = () => {
                 headers: { Authorization: `Bearer ${token}` }
             };
 
-            await axios.post('http://localhost:5000/api/adoption', {
+            await axios.post('https://yemani-petcare-backend.hf.space/api/adoption', {
                 petId: id,
                 contactNumber,
                 message

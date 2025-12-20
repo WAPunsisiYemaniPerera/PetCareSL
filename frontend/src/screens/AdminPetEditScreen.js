@@ -29,7 +29,7 @@ const AdminPetEditScreen = () => {
                 try {
                     const token = localStorage.getItem('petCareToken');
                     const config = { headers: { Authorization: `Bearer ${token}` } };
-                    const { data } = await axios.get(`http://localhost:5000/api/admin/pets/${petId}`, config);
+                    const { data } = await axios.get(`https://yemani-petcare-backend.hf.space/api/admin/pets/${petId}`, config);
                     
                     setName(data.name);
                     setPetType(data.petType);
@@ -62,7 +62,7 @@ const AdminPetEditScreen = () => {
 
         try{
             const config = { headers: { 'Content-Type': 'multipart/form-data' } }
-            const {data} = await axios.post('http://localhost:5000/api/upload', formData, config);
+            const {data} = await axios.post('https://yemani-petcare-backend.hf.space/api/upload', formData, config);
             setImage(data);
             setUploading(false);
             // 👇 2. Image Upload Success Toast
@@ -83,11 +83,11 @@ const AdminPetEditScreen = () => {
             const petData = { name, petType, breed, age: Number(age), status, story, shelterInfo, image, contact };
 
             if (isEditMode) {
-                await axios.put(`http://localhost:5000/api/admin/pets/${petId}`, petData, config);
+                await axios.put(`https://yemani-petcare-backend.hf.space/api/admin/pets/${petId}`, petData, config);
                 // 👇 4. Update Success Toast
                 toast.success('Pet Profile Updated! 💾', { theme: "colored", style: { backgroundColor: '#3C3F36', color: '#fff' } });
             } else {
-                await axios.post('http://localhost:5000/api/admin/pets', petData, config);
+                await axios.post('https://yemani-petcare-backend.hf.space/api/admin/pets', petData, config);
                 // 👇 5. Create Success Toast
                 toast.success('New Pet Added! 🐾', { theme: "colored", style: { backgroundColor: '#A0522D', color: '#fff' } });
             }

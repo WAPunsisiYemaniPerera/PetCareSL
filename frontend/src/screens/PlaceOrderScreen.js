@@ -47,7 +47,7 @@ const PlaceOrderScreen = () => {
                 totalPrice
             };
 
-            await axios.post('http://localhost:5000/api/orders', orderData, config);
+            await axios.post('https://yemani-petcare-backend.hf.space/api/orders', orderData, config);
             
             // Success Animation/Alert could go here
             toast.success('Order Placed Successfully! 🎉', {

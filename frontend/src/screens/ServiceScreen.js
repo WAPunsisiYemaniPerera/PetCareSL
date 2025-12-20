@@ -30,7 +30,7 @@ const ServiceScreen = () => {
     useEffect(() => {
         const fetchServices = async () => {
             try {
-                const { data } = await axios.get('http://localhost:5000/api/services');
+                const { data } = await axios.get('https://yemani-petcare-backend.hf.space/api/services');
                 setServices(data);
                 setLoading(false);
             } catch (error) {

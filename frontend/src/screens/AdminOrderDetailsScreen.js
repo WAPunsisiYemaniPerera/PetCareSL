@@ -15,7 +15,7 @@ const AdminOrderDetailsScreen = () => {
             const token = localStorage.getItem('petCareToken');
             const config = { headers: { Authorization: `Bearer ${token}` } };
             
-            const { data } = await axios.get(`http://localhost:5000/api/orders/${orderId}`, config);
+            const { data } = await axios.get(`https://yemani-petcare-backend.hf.space/api/orders/${orderId}`, config);
             setOrder(data);
             setLoading(false);
         } catch (err) {
@@ -34,7 +34,7 @@ const AdminOrderDetailsScreen = () => {
             try {
                 const token = localStorage.getItem('petCareToken');
                 const config = { headers: { Authorization: `Bearer ${token}` } };
-                await axios.put(`http://localhost:5000/api/orders/${orderId}/deliver`, {}, config);
+                await axios.put(`https://yemani-petcare-backend.hf.space/api/orders/${orderId}/deliver`, {}, config);
                 
                 toast.success('Order Marked as Delivered! 🚚✅', {
                     theme: "colored",

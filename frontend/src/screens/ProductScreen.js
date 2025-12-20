@@ -18,7 +18,7 @@ const ProductScreen = () => {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const { data } = await axios.get(`http://localhost:5000/api/products/${productId}`);
+                const { data } = await axios.get(`https://yemani-petcare-backend.hf.space/api/products/${productId}`);
                 setProduct(data);
                 setLoading(false);
             } catch (err) {

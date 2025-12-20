@@ -11,7 +11,7 @@ const AdminAdoptionRequests = () => {
         try {
             const token = localStorage.getItem('petCareToken');
             const config = { headers: { Authorization: `Bearer ${token}` } };
-            const { data } = await axios.get('http://localhost:5000/api/adoption', config);
+            const { data } = await axios.get('https://yemani-petcare-backend.hf.space/api/adoption', config);
             setRequests(data);
             setLoading(false);
         } catch (error) {
@@ -31,7 +31,7 @@ const AdminAdoptionRequests = () => {
                 const token = localStorage.getItem('petCareToken');
                 const config = { headers: { Authorization: `Bearer ${token}` } };
                 
-                await axios.put(`http://localhost:5000/api/adoption/${id}`, { status: newStatus }, config);
+                await axios.put(`https://yemani-petcare-backend.hf.space/api/adoption/${id}`, { status: newStatus }, config);
                 
                 toast.success(`Request marked as ${newStatus}! ✅`, {
                     theme: "colored",

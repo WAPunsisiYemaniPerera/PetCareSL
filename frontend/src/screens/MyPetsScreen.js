@@ -31,7 +31,7 @@ const MyPetsScreen = () => {
             setLoading(true);
             const token = localStorage.getItem('petCareToken');
             const config = { headers: { Authorization: `Bearer ${token}` } };
-            const { data } = await axios.get('http://localhost:5000/api/pets/mypets', config);
+            const { data } = await axios.get('https://yemani-petcare-backend.hf.space/api/pets/mypets', config);
             setPets(data);
             setLoading(false);
         } catch (err) {
@@ -52,7 +52,7 @@ const MyPetsScreen = () => {
                 },
             };
             const petData = { name, petType, breed, age: Number(age) };
-            await axios.post('http://localhost:5000/api/pets', petData, config);
+            await axios.post('https://yemani-petcare-backend.hf.space/api/pets', petData, config);
             
             setShowForm(false);
             setName(''); setPetType('Dog'); setBreed(''); setAge('');

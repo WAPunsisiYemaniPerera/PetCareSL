@@ -19,7 +19,7 @@ const ServiceDetailScreen = () => {
     const fetchServiceDetails = async () => {
         try {
             setLoading(true);
-            const { data } = await axios.get(`http://localhost:5000/api/services/${id}`);
+            const { data } = await axios.get(`https://yemani-petcare-backend.hf.space/api/services/${id}`);
             setService(data);
             setLoading(false);
         } catch (err) {
@@ -53,7 +53,7 @@ const ServiceDetailScreen = () => {
             };
 
             const reviewData = { rating, comment };
-            await axios.post(`http://localhost:5000/api/services/${id}/reviews`, reviewData, config);
+            await axios.post(`https://yemani-petcare-backend.hf.space/api/services/${id}/reviews`, reviewData, config);
 
             
             toast.success('Review Submitted Successfully! 🎉', {

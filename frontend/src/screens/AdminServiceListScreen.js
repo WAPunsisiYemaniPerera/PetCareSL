@@ -17,7 +17,7 @@ const AdminServiceListScreen = () => {
     const fetchServices = async () => {
         try {
             setLoading(true);
-            const { data } = await axios.get('http://localhost:5000/api/services');
+            const { data } = await axios.get('https://yemani-petcare-backend.hf.space/api/services');
             setServices(data);
             setLoading(false);
         } catch (err) {
@@ -44,7 +44,7 @@ const AdminServiceListScreen = () => {
             try {
                 const token = localStorage.getItem('petCareToken');
                 const config = { headers: { Authorization: `Bearer ${token}` } };
-                await axios.delete(`http://localhost:5000/api/services/${id}`, config);
+                await axios.delete(`https://yemani-petcare-backend.hf.space/api/services/${id}`, config);
                 
                 showSuccess('Service deleted successfully! 🗑️'); // Success Box
                 fetchServices(); 
@@ -58,7 +58,7 @@ const AdminServiceListScreen = () => {
         try {
             const token = localStorage.getItem('petCareToken');
             const config = { headers: { Authorization: `Bearer ${token}` } };
-            const { data } = await axios.post('http://localhost:5000/api/services', {}, config);
+            const { data } = await axios.post('https://yemani-petcare-backend.hf.space/api/services', {}, config);
             navigate(`/admin/service/${data._id}/edit`);
         } catch (error) {
             alert('Failed to create new service.');

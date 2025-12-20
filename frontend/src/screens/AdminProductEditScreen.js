@@ -21,7 +21,7 @@ const AdminProductEditScreen = () => {
     useEffect(() => {
         const fetchProductDetails = async () => {
             try {
-                const { data } = await axios.get(`http://localhost:5000/api/products/${productId}`);
+                const { data } = await axios.get(`https://yemani-petcare-backend.hf.space/api/products/${productId}`);
                 setName(data.name);
                 setPrice(data.price);
                 setImage(data.image);
@@ -47,7 +47,7 @@ const AdminProductEditScreen = () => {
 
         try {
             const config = { headers: { 'Content-Type': 'multipart/form-data' } }
-            const { data } = await axios.post('http://localhost:5000/api/upload', formData, config);
+            const { data } = await axios.post('https://yemani-petcare-backend.hf.space/api/upload', formData, config);
             setImage(data);
             setUploading(false);
             
@@ -68,7 +68,7 @@ const AdminProductEditScreen = () => {
             
             const productData = { name, price, image, brand, category, countInStock, description };
 
-            await axios.put(`http://localhost:5000/api/products/${productId}`, productData, config);
+            await axios.put(`https://yemani-petcare-backend.hf.space/api/products/${productId}`, productData, config);
             
             
             toast.success('Product Updated Successfully! ✅', { 

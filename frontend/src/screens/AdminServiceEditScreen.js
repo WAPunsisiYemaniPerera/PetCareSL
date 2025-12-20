@@ -24,7 +24,7 @@ const AdminServiceEditScreen = () => {
     useEffect(() => {
         const fetchServiceDetails = async () => {
             try {
-                const { data } = await axios.get(`http://localhost:5000/api/services/${serviceId}`);
+                const { data } = await axios.get(`https://yemani-petcare-backend.hf.space/api/services/${serviceId}`);
                 
                 setName(data.name);
                 setType(data.type);
@@ -64,7 +64,7 @@ const AdminServiceEditScreen = () => {
                 }
             };
 
-            await axios.put(`http://localhost:5000/api/services/${serviceId}`, serviceData, config);
+            await axios.put(`https://yemani-petcare-backend.hf.space/api/services/${serviceId}`, serviceData, config);
             
             
             toast.success('Service Updated Successfully! ✅', { 
