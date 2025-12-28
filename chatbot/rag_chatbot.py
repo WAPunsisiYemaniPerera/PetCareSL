@@ -9,6 +9,7 @@ from langchain.agents import create_tool_calling_agent, AgentExecutor
 from langchain.tools.retriever import create_retriever_tool
 from langchain_community.tools import DuckDuckGoSearchRun
 from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
 # 1. Load Environment Variables
 load_dotenv()
@@ -94,6 +95,8 @@ def get_qa_chain():
         - If the topic is serious (like a sickness), be empathetic but advise seeing a vet.
         - Don't mention "I found this in the PDF" or "I searched Google". Just give the answer naturally.
         """),
+        ("placeholder", "{chat_history}"),
+        
         ("human", "{input}"),
         ("placeholder", "{agent_scratchpad}"),
     ])
