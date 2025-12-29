@@ -35,7 +35,7 @@ function ChatScreen() {
                 content: msg.text
             }));
 
-            const response = await axios.post('https://yemani-petcare-chatbot.hf.space/ask', { 
+            const response = await axios.post('https://yemani-petcare-chatbot-new.hf.space/ask', { 
                 message: input, 
                 history: chatHistory 
             });
