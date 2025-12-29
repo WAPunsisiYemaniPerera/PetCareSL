@@ -46,7 +46,7 @@ def create_vector_db():
     db.save_local(DB_path)
     print("✅ Database created successfully!")
 
-# 3. Create the Agent
+# Create the Agent
 def get_qa_chain():
     if not os.path.exists(DB_path):
         create_vector_db()
@@ -79,7 +79,7 @@ def get_qa_chain():
     tools = [retriever_tool, search_tool]
 
     #making llm
-    llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0.7)
+    llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0.7)
 
     #making the prompt
     prompt = ChatPromptTemplate.from_messages([
